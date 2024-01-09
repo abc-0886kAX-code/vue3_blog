@@ -3,7 +3,7 @@
  * @Author: zhangxin
  * @Date: 2022-11-30 10:18:11
  * @LastEditors: zhangxin
- * @LastEditTime: 2023-12-07 15:03:20
+ * @LastEditTime: 2024-01-09 17:00:44
  * @Description:
  */
 import { defineRouter } from "./defineRouter";
@@ -18,10 +18,19 @@ export const routes = [
     {
         name: "layout",
         path: "/",
-        redirect: "",
+        redirect: "/home",
         meta: defineMeta({ level: 0 }),
-        component: () => import("@/layout/Home.vue"),
-        children: []
+        component: () => import("@/layout/Layout.vue"),
+        children: [
+            {
+                name: "home",
+                path: "/home",
+                redirect: "",
+                meta: defineMeta({ level: 0, title: "首页" }),
+                component: () => import("@/pages/Home/Home.vue"),
+                children: []
+            }
+        ]
     },
     {
         name: "404",
