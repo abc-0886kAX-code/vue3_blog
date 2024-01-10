@@ -3,7 +3,7 @@
  * @Author: zhangxin
  * @Date: 2022-11-11 12:26:15
  * @LastEditors: zhangxin
- * @LastEditTime: 2023-12-07 15:18:44
+ * @LastEditTime: 2024-01-10 17:37:29
  * @Description:
  */
 import { useRouter } from "@/router/useRouter";
@@ -23,7 +23,7 @@ router.beforeEach(async (to, from, next) => {
     NProgress.start();
 
     // set page title
-    document.title = to.meta.title ?? "vue3_blog";
+    document.title = "吴艳祖のBlog";
 
     if (
         noNeedToken.findIndex((item) => {

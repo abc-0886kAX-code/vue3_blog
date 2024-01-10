@@ -3,7 +3,7 @@
  * @Author: zhangxin
  * @Date: 2024-01-09 15:31:50
  * @LastEditors: zhangxin
- * @LastEditTime: 2024-01-10 13:39:35
+ * @LastEditTime: 2024-01-10 17:38:31
  * @Description:
 -->
 <script setup>
@@ -76,7 +76,7 @@ onMounted(() => {
 
                 &-body {
                     width: 88ch;
-                    animation: typing 2s steps(88), blink .5s step-end infinite alternate;
+                    animation: typing 5s steps(88), blink .5s step-end infinite alternate;
                     white-space: nowrap;
                     overflow: hidden;
                     border-right: 3px solid;
@@ -90,7 +90,7 @@ onMounted(() => {
     &-body {
         width: 100%;
         height: 600px;
-        background: pink;
+        background: #fff;
     }
 }
 

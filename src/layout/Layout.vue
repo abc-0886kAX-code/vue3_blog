@@ -3,7 +3,7 @@
  * @Author: zhangxin
  * @Date: 2023-04-12 13:14:28
  * @LastEditors: zhangxin
- * @LastEditTime: 2024-01-09 17:31:26
+ * @LastEditTime: 2024-01-10 17:36:38
  * @Description:
 -->
 <script setup>
@@ -34,6 +34,11 @@ function handleScrollEvent({ scrollTop }) {
     }
     headerClassName.value = '';
 }
+
+function openGithub() {
+    window.open('https://github.com/abc-0886kAX-code')
+}
+
 </script>
 
 <template>
@@ -49,7 +54,10 @@ function handleScrollEvent({ scrollTop }) {
                             </div>
                         </template>
                     </div>
-                    <div class="layout-scrollbar-header-console"></div>
+                    <div class="layout-scrollbar-header-console">
+                        <IconGrommetIconsSun class="layout-scrollbar-header-console-item" />
+                        <IconGrommetIconsGithub @click="openGithub" class="layout-scrollbar-header-console-item" />
+                    </div>
                 </div>
             </transition>
             <div class="layout-scrollbar-body">
@@ -82,6 +90,7 @@ function handleScrollEvent({ scrollTop }) {
             background-color: transparent;
             margin: 0 auto;
             padding: 0 11%;
+            box-sizing: border-box;
             display: flex;
             justify-content: space-between;
             z-index: 99;
@@ -96,6 +105,20 @@ function handleScrollEvent({ scrollTop }) {
                     font-size: 15px;
                     letter-spacing: 2px;
                     cursor: pointer;
+                }
+            }
+
+            &-console {
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                &-item {
+                    cursor: pointer;
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 15px;
                 }
             }
         }

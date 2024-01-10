@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: zhangxin
- * @LastEditTime: 2023-12-07 14:54:29
+ * @LastEditTime: 2024-01-10 17:17:23
  * @Description:
  */
 import { defineConfig, splitVendorChunkPlugin, loadEnv } from "vite";
@@ -14,6 +14,8 @@ import viteCompression from "vite-plugin-compression";
 import autoImport from "unplugin-auto-import/vite";
 import vueComponents from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
 import lodashImport from "./plugins/lodash";
 
@@ -69,7 +71,18 @@ export default defineConfig(({ mode }) => {
                 resolvers: [ElementPlusResolver()]
             }),
             vueComponents({
-                resolvers: [ElementPlusResolver()],
+                resolvers: [
+                    ElementPlusResolver(),
+                    IconsResolver({
+                        prefix: 'Icon',
+                        enabledCollections: ['ep', 'grommet-icons'],
+                    })
+                ],
+            }),
+            Icons({
+                autoInstall: true,
+                compiler: "vue3",
+                scale: 1.0,
             }),
             viteCompression({
                 verbose: true,
