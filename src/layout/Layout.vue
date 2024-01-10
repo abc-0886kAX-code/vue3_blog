@@ -3,7 +3,7 @@
  * @Author: zhangxin
  * @Date: 2023-04-12 13:14:28
  * @LastEditors: zhangxin
- * @LastEditTime: 2024-01-10 17:36:38
+ * @LastEditTime: 2024-01-10 17:49:03
  * @Description:
 -->
 <script setup>
@@ -54,7 +54,7 @@ function openGithub() {
                             </div>
                         </template>
                     </div>
-                    <div class="layout-scrollbar-header-console">
+                    <div class="layout-scrollbar-header-console" :style="menuColor">
                         <IconGrommetIconsSun class="layout-scrollbar-header-console-item" />
                         <IconGrommetIconsGithub @click="openGithub" class="layout-scrollbar-header-console-item" />
                     </div>
