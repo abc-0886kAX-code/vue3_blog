@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: zhangxin
- * @LastEditTime: 2024-01-10 17:17:23
+ * @LastEditTime: 2024-01-22 17:44:26
  * @Description:
  */
 import { defineConfig, splitVendorChunkPlugin, loadEnv } from "vite";
@@ -68,14 +68,18 @@ export default defineConfig(({ mode }) => {
                     },
                 ],
                 dts: true,
-                resolvers: [ElementPlusResolver()]
+                resolvers: [
+                    ElementPlusResolver(),
+                    IconsResolver({
+                        prefix: 'Icon',
+                    })
+                ]
             }),
             vueComponents({
                 resolvers: [
                     ElementPlusResolver(),
                     IconsResolver({
                         prefix: 'Icon',
-                        enabledCollections: ['ep', 'grommet-icons'],
                     })
                 ],
             }),
