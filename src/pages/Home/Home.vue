@@ -3,16 +3,45 @@
  * @Author: zhangxin
  * @Date: 2024-01-09 15:31:50
  * @LastEditors: zhangxin
- * @LastEditTime: 2024-01-10 17:38:31
+ * @LastEditTime: 2024-02-05 10:38:02
  * @Description:
 -->
 <script setup>
+import { useScrollbar } from "@/biz/Scrollbar/usecase/useScrollbarSetup.js";
+const { ref: scrollbarRef, top } = useScrollbar();
 const windowWidth = ref(1920)
 const windowHeight = ref(1080)
 function getWindowResize() {
     windowWidth.value = window.innerWidth
     windowHeight.value = window.innerHeight
 }
+
+const isShowArrow = computed(() => {
+    return unref(top) === 0
+})
+
+function skipPosition() {
+    smoothScrollTo(unref(scrollbarRef).wrapRef, unref(windowHeight), 500);
+}
+
+function smoothScrollTo(element, target, duration) {
+    const start = element.scrollTop;
+    const change = target - start;
+    const startTime = performance.now();
+
+    function animateScroll(timestamp) {
+        const elapsed = timestamp - startTime;
+        const fraction = Math.min(elapsed / duration, 1);
+
+        element.scrollTop = start + change * fraction;
+
+        if (fraction < 1) {
+            requestAnimationFrame(animateScroll);
+        }
+    }
+    requestAnimationFrame(animateScroll);
+}
+
 onMounted(() => {
     getWindowResize()
     window.addEventListener('resize', getWindowResize)
@@ -30,9 +59,14 @@ onMounted(() => {
                         on to
                         seek my vanished dream.</p>
                 </div>
+                <IconGrommetIconsDown v-show="isShowArrow" class="home-background-mask-downward" @click="skipPosition" />
             </div>
         </div>
-        <div class="home-body"></div>
+        <div class="home-body" :style="{ height: `${windowHeight}px` }">
+            <div class="home-body-content">
+
+            </div>
+        </div>
     </div>
 </template>
 
@@ -84,6 +118,16 @@ onMounted(() => {
                     font-size: 1.5em;
                 }
             }
+
+            &-downward {
+                width: 2rem;
+                height: 2rem;
+                position: absolute;
+                left: 48%;
+                bottom: 3rem;
+                animation: fadeinT 2s infinite linear;
+                cursor: pointer;
+            }
         }
     }
 
@@ -91,6 +135,13 @@ onMounted(() => {
         width: 100%;
         height: 600px;
         background: #fff;
+
+        &-content {
+            width: 60%;
+            height: 100%;
+            margin: 2rem auto;
+            box-sizing: border-box;
+        }
     }
 }
 
@@ -103,6 +154,20 @@ onMounted(() => {
 @keyframes blink {
     50% {
         border-color: transparent
+    }
+}
+
+
+
+@keyframes fadeinT {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 </style>

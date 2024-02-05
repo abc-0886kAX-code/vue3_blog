@@ -3,10 +3,11 @@
  * @Author: zhangxin
  * @Date: 2023-04-12 13:14:28
  * @LastEditors: zhangxin
- * @LastEditTime: 2024-01-10 17:49:03
+ * @LastEditTime: 2024-02-05 09:49:08
  * @Description:
 -->
 <script setup>
+import Scrollbar from "@/biz/Scrollbar/view/Scrollbar.vue";
 import { useMenu } from "@/hooks/useMenu.js";
 import { transArray } from "~/shared/trans";
 const { proxy } = getCurrentInstance();
@@ -43,7 +44,7 @@ function openGithub() {
 
 <template>
     <div class="layout">
-        <el-scrollbar class="layout-scrollbar" @scroll="handleScrollEvent">
+        <Scrollbar class="layout-scrollbar" @scroll="handleScrollEvent">
             <transition name="el-fade-in-linear">
                 <div class="layout-scrollbar-header" :class="headerClassName">
                     <div class="layout-scrollbar-header-menu" :style="menuColor">
@@ -67,8 +68,7 @@ function openGithub() {
                     </transition>
                 </RouterView>
             </div>
-        </el-scrollbar>
-
+        </Scrollbar>
     </div>
 </template>
 
