@@ -3,7 +3,7 @@
  * @Author: zhangxin
  * @Date: 2024-01-09 15:31:50
  * @LastEditors: zhangxin
- * @LastEditTime: 2024-02-05 10:38:02
+ * @LastEditTime: 2024-02-05 10:46:11
  * @Description:
 -->
 <script setup>
@@ -21,7 +21,7 @@ const isShowArrow = computed(() => {
 })
 
 function skipPosition() {
-    smoothScrollTo(unref(scrollbarRef).wrapRef, unref(windowHeight), 500);
+    smoothScrollTo(unref(scrollbarRef).wrapRef, unref(windowHeight) - 100, 1000);
 }
 
 function smoothScrollTo(element, target, duration) {
@@ -64,7 +64,12 @@ onMounted(() => {
         </div>
         <div class="home-body" :style="{ height: `${windowHeight}px` }">
             <div class="home-body-content">
-
+                <template v-for="index in 9" :key="index">
+                    <div class="home-body-content-item">
+                        <el-skeleton style="width: 100%;height: 100%;" :number="1" loading :rows="4" animated>
+                        </el-skeleton>
+                    </div>
+                </template>
             </div>
         </div>
     </div>
@@ -141,6 +146,14 @@ onMounted(() => {
             height: 100%;
             margin: 2rem auto;
             box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            &-item {
+                width: 32%;
+                height: 32%;
+            }
         }
     }
 }
